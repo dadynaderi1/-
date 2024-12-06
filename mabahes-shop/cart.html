@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link rel="stylesheet" href="./css/flexboxgrid.css">
+    <link rel="stylesheet" href="./css/owl.carousel.min.css">
+    <link rel="stylesheet" href="./css/owl.theme.default.min.css">
+    <title>سبد خرید</title>
+</head>
+<body>
+    <header>
+        <div class="top-head">
+            <div class="right">
+                <a href="index.html">
+                    <img src="./images/logo2.jpg" alt="" class="logo-img">
+                </a>
+            </div>
+            <div class="left">
+                <div class="search">
+                    <input type="text" placeholder="جستجو...">
+                    <i class="fa fa-search"></i>
+                </div>
+                <div class="cart">
+                    <a href="#">
+                        سبد خرید
+                        <span class="num-cart">3</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="sec-menu">
+            <div class="menu">
+                <a href="index.html">خانه</a>
+                <a href="">فروشگاه</a>
+                <a href="">درباره ما</a>
+                <a href="">تماس با ما</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="cart-section">
+            <div class="cart-title">
+                <h2>سبد خرید شما</h2>
+            </div>
+            <div class="cart-items" id="cart-items">
+                <div class="cart-item" id="item-1">
+                    <div class="cart-item-img">
+                        <img src="./images/1.jpg" alt="رژ لب کد 43">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4>رژ لب کد 43</h4>
+                        <p>650,000 تومان</p>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <label for="quantity-1">تعداد:</label>
+                        <input type="number" id="quantity-1" value="1" min="1">
+                    </div>
+                    <div class="cart-item-remove">
+                        <button class="remove-item" onclick="removeItem('item-1')">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="cart-item" id="item-2">
+                    <div class="cart-item-img">
+                        <img src="./images/2.jpg" alt="مداد ابرو کد 900">
+                    </div>
+                    <div class="cart-item-details">
+                        <h4>مداد ابرو کد 900</h4>
+                        <p>450,000 تومان</p>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <label for="quantity-2">تعداد:</label>
+                        <input type="number" id="quantity-2" value="2" min="1">
+                    </div>
+                    <div class="cart-item-remove">
+                        <button class="remove-item" onclick="removeItem('item-2')">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- More items can go here -->
+            </div>
+            <div class="cart-summary">
+                <div class="total">
+                    <span>مجموع:</span>
+                    <span id="total-price">1,550,000 تومان</span>
+                </div>
+                <div class="checkout-btn">
+                    <a href="index.html">پرداخت</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="right">
+                    <div class="title">
+                        درباره ما
+                    </div>
+                    <div class="des">
+                        <p>
+                            لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col lg-4">
+                <div class="left">
+                    <div class="title">
+                        ما را در شبکه های اجتماعی دنبال کنید
+                    </div>
+                    <div class="socials">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            کلیه حقوق مادی و معنوی سایت متعلق به مباحث شاپ می باشد.
+        </div>
+    </footer>
+    <script src="./js/jquery-3.7.1.min.js"></script>
+    <script>
+        // Function to remove an item from the cart
+        function removeItem(itemId) {
+            document.getElementById(itemId).remove();
+            updateTotalPrice();
+        }
+
+        // Function to update the total price based on quantities
+        function updateTotalPrice() {
+            let totalPrice = 0;
+            const cartItems = document.querySelectorAll('.cart-item');
+            cartItems.forEach(item => {
+                const price = parseInt(item.querySelector('p').innerText.replace('تومان', '').replace(',', '').trim());
+                const quantity = parseInt(item.querySelector('input[type="number"]').value);
+                totalPrice += price * quantity;
+            });
+            document.getElementById('total-price').innerText = totalPrice.toLocaleString() + ' تومان';
+        }
+
+        // Event listener to update price when quantity changes
+        const quantityInputs = document.querySelectorAll('input[type="number"]');
+        quantityInputs.forEach(input => {
+            input.addEventListener('input', updateTotalPrice);
+        });
+    </script>
+</body>
+</html>
